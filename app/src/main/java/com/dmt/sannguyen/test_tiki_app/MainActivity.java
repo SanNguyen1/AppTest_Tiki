@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        // goi ham passdata de lay du lieu tu link url
         new passdata().execute("https://raw.githubusercontent.com/tikivn/android-home-test/v2/keywords.json");
 
     }
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
 
+            // get du lieu tu URL
             StringBuilder content = new StringBuilder();
             try {
                 URL url = new URL(strings[0]);
@@ -62,39 +63,36 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             try {
+                // lay chuoi + xu ly
                 final JSONArray jsonArray = new JSONArray(s);
+                // lay tung item trong chuoi jsonArray + xu ly chuoi
                 for(int i =0; i < jsonArray.length();i++) {
+
                     String Teninurl  = jsonArray.getString(i);
                     String[] TenCut = Teninurl.split(" ");
-                    for(int j = 0 ; j <TenCut.length;j++){
-                        if(TenCut.length == 1){
-                            Ten.add(TenCut[0]);
-                            break;
-                        } else if (TenCut.length == 2 ){
-                            Ten.add(TenCut[0]+"\n"+TenCut[1]);
-                            break;
-                        } else if(TenCut.length == 3){
-                            Ten.add(TenCut[0]+" "+TenCut[1]+"\n"+TenCut[2]);
-                            break;
-                        } else if(TenCut.length == 4){
-                            Ten.add(TenCut[0]+" "+TenCut[1]+"\n"+TenCut[2]+" "+TenCut[3]);
-                            break;
-                        } else if(TenCut.length == 5){
-                            Ten.add(TenCut[0]+" "+TenCut[1]+" "+TenCut[2]+"\n"+TenCut[3]+" "+TenCut[4]);
-                            break;
-                        }  else if(TenCut.length == 6){
-                            Ten.add(TenCut[0]+" "+TenCut[1]+" "+TenCut[2]+"\n"+TenCut[3]+" "+TenCut[4]+" "+TenCut[5]);
-                            break;
-                        } else if(TenCut.length == 7){
-                            Ten.add(TenCut[0]+" "+TenCut[1]+" "+TenCut[2]+"\n"+TenCut[3]+" "+TenCut[4]+" "+TenCut[5]+" "+TenCut[6]);
-                            break;
-                        } else if(TenCut.length == 8){
-                            Ten.add(TenCut[0]+" "+TenCut[1]+" "+TenCut[2] +" "+TenCut[3] +"\n"+TenCut[4]+" "+TenCut[5]+" "+TenCut[6]+" "+TenCut[7]);
-                            break;
-                        }
+                    // xu ly chuoi
+
+                    if(TenCut.length == 1){
+                        Ten.add(TenCut[0]);
+                    } else if (TenCut.length == 2 ){
+                        Ten.add(TenCut[0]+"\n"+TenCut[1]);
+                    } else if(TenCut.length == 3){
+                        Ten.add(TenCut[0]+" "+TenCut[1]+"\n"+TenCut[2]);
+                    } else if(TenCut.length == 4){
+                        Ten.add(TenCut[0]+" "+TenCut[1]+"\n"+TenCut[2]+" "+TenCut[3]);
+                    } else if(TenCut.length == 5){
+                        Ten.add(TenCut[0]+" "+TenCut[1]+" "+TenCut[2]+"\n"+TenCut[3]+" "+TenCut[4]);
+                    }  else if(TenCut.length == 6){
+                        Ten.add(TenCut[0]+" "+TenCut[1]+" "+TenCut[2]+"\n"+TenCut[3]+" "+TenCut[4]+" "+TenCut[5]);
+                    } else if(TenCut.length == 7){
+                        Ten.add(TenCut[0]+" "+TenCut[1]+" "+TenCut[2]+"\n"+TenCut[3]+" "+TenCut[4]+" "+TenCut[5]+" "+TenCut[6]);
+                    } else if(TenCut.length == 8){
+                        Ten.add(TenCut[0]+" "+TenCut[1]+" "+TenCut[2] +" "+TenCut[3] +"\n"+TenCut[4]+" "+TenCut[5]+" "+TenCut[6]+" "+TenCut[7]);
                     }
                 }
+                // xu ly giua cac View de truyen chuoi vao View
                 LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                // anh xa RecyclerView
                 RecyclerView recyclerView = findViewById(R.id.recycleView);
                 recyclerView.setLayoutManager(layoutManager);
                 ViewAdapter adapter = new ViewAdapter(MainActivity.this, Ten);
