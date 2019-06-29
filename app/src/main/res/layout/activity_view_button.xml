@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    tools:context=".ViewButton">
+    <TextView
+        android:textColor="#fff"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:id="@+id/txtTen"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:text="Nguyễn Văn n"
+        android:background="@drawable/custom_button"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginRight="20dp"/>
+</RelativeLayout>
